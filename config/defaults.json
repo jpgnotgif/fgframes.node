@@ -1,0 +1,6 @@
+{
+  "dataPaths": {
+    "usf4": "data/title/usf4/json",
+    "sfv": "data/title/sfv/json"
+  }
+}

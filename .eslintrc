@@ -1,0 +1,70 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-extra-semi": 2,
+    "no-spaced-func": 2,
+    "keyword-spacing": 2,
+    "space-before-blocks": 2,
+    "space-infix-ops": 2,
+    "no-mixed-spaces-and-tabs": 2,
+    // 458 errors
+    "no-console": 0,
+    // 147 errors
+    "no-extra-parens": 0,
+    // over 9000
+    // 469 when args none
+    "no-unused-vars": [
+      0,
+      {
+        "args": "none"
+      }
+    ],
+    // 52 errors
+    "no-undef": 0,
+    // 32 errors
+    "no-octal": 0,
+    // 45 errors
+    "no-redeclare": 0,
+    "arrow-parens": 2,
+    "arrow-spacing": 2,
+    "generator-star-spacing": 2,
+    "no-confusing-arrow": 2,
+    "no-constant-condition": 2,
+    "no-class-assign": 2,
+    "no-const-assign": 2,
+    "no-dupe-class-members": 2,
+    // 5388 errors
+    "no-var": 0,
+    // 713 errors
+    "object-shorthand": 0,
+    // 3630 errors
+    "prefer-arrow-callback": 0,
+    "prefer-const": 2,
+    // 429 errors
+    "prefer-template": 0,
+    "require-yield": 2
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  }
+}

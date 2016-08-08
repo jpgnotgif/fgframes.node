@@ -2,14 +2,14 @@
 
 const path = require('path');
 const fs = require('fs');
-const config = require('../config/defaults');
-const dataPath = config.dataPaths.usf4;
+const config = require('../../config/defaults');
+const dataPath = config.dataPaths.sfv;
 
 class Character {
   constructor(name, game) {
     this.name = name;
     this.game = game;
-    this.path = path.join(__dirname, '../', dataPath, `${this.name}.json`);
+    this.path = path.join(__dirname, '../../', dataPath, `${this.name}.json`);
   }
 
   exists() {

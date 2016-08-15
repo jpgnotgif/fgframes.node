@@ -3,35 +3,41 @@
 const path = require('path');
 const fs = require('fs');
 const config = require('../../config/defaults');
-const dataPath = config.dataPaths.sfv;
+const dataPath = config.dataPaths;
 
 class Character {
   constructor(name, game) {
     this.name = name;
     this.game = game;
-    this.path = path.join(__dirname, '../../', dataPath, `${this.name}.json`);
+    this.path = path.join(__dirname, '../../', dataPath[this.game], `${this.name}.json`);
   }
 
   exists() {
-    fs.stat(this.path, (err, _) => {
-      if (err) {
-        console.log(`Error: ${err.message}`);
-        console.log(err.stack);
-        return false;
-      }
+    const p = new Promise((resolve, reject) => {
+      fs.stat(this.path, (err, _) => {
+        if (err) {
+          reject(new Error(`${this.name} not found`));
+        } else {
+          resolve(this);
+        }
+      });
     });
-    return true;
+
+    return p;
   }
 
-  frames(cb) {
-    fs.readFile(this.path, (err, contents) => {
-      if (err) {
-        console.log(`Error: ${err.message}`);
-        console.log(err.stack);
-        return { message: 'Failed to get frame data' };
-      }
-      return cb(err, contents);
+  frames() {
+    const p = new Promise((resolve, reject) => {
+      fs.readFile(this.path, (err, contents) => {
+        if (err) {
+          reject(new Error('Failed to get frame data'));
+        } else {
+          resolve(contents);
+        }
+      });
     });
+
+    return p;
   }
 }
 

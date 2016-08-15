@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const router = express.Router();
@@ -9,15 +9,23 @@ router.get('/:name', function(req, res, next) {
   res.set('Content-Type', 'application/json');
   const character = new Character(req.params.name, game);
 
-  if (character.exists()) {
-    character.frames((err, data) => {
-      res.send(data);
-    });
-  } else {
+  character.exists()
+    .then((character) => {
+      character.frames()
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(404).json({
+            game, message: err.message
+          });
+        });
+    })
+    .catch((err) => {
       res.status(404).json({
-        message: `${character.name} was not found`
+        game, message: err.message
       });
-  }
+    });
 });
 
 module.exports = router;

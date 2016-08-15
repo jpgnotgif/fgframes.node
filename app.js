@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const path = require('path');
@@ -12,8 +12,8 @@ const sfv = require('./main/routes/sfv');
 const app = express();
 
 // Config
-app.set('usf4-data-path', 'data/title/usf4/json')
-app.set('sfv-data-path', 'data/title/usf4/json')
+app.set('usf4-data-path', 'data/title/usf4/json');
+app.set('sfv-data-path', 'data/title/sfv/json');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

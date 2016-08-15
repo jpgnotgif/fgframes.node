@@ -6,8 +6,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-const usf4 = require('./routes/usf4');
-const sfv = require('./routes/sfv');
+const usf4 = require('./main/routes/usf4');
+const sfv = require('./main/routes/sfv');
 
 const app = express();
 

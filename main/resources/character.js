@@ -6,10 +6,16 @@ const config = require('../../config/defaults');
 const dataPath = config.dataPaths;
 
 class Character {
-  constructor(name, game) {
+  constructor(name, game, version) {
     this.name = name;
     this.game = game;
-    this.path = path.join(__dirname, '../../', dataPath[this.game], `${this.name}.json`);
+    this.version = version;
+    this.path = path.join(__dirname, '../../', dataPath[this.game], `s${version}`, `${this.name}.json`);
+  }
+
+  validVersion() {
+    return this.version == 1 ||
+      this.version == 2;
   }
 
   exists() {

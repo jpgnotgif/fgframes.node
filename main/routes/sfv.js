@@ -5,9 +5,15 @@ const router = express.Router();
 const Character = require('../resources/character');
 const game = 'sfv';
 
-router.get('/:name', function(req, res, next) {
+router.get('/s:version/:name', function(req, res, next) {
   res.set('Content-Type', 'application/json');
-  const character = new Character(req.params.name, game);
+
+  const character = new Character(req.params.name, game, req.params.version);
+  if (!(character.validVersion())) {
+    res.status(400).json({
+      game, message: "Version must either be '1' or '2'"
+    })
+  }
 
   character.exists()
     .then((character) => {

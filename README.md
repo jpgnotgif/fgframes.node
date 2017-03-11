@@ -68,7 +68,8 @@ So, let's say we run the curl command above. This is a snippet of what you got b
   }
 ```
 
-There's 2 top level keys. ```metadata``` contains the health and stun values of the given character. ```attacks``` contain a collection of key-value pairs where the keys are abbreviated and non-abbreviated attack names. The values contain metadata specific to the attack. Most attack frame state names (```startup```,```active```,etc...) are spelled out, but certain values may be abbreviated. Below is a key for abbreviated_values
+
+There's 2 top level keys. ```metadata``` contains the health and stun values of the given character. ```attacks``` contain a collection of key-value pairs where the keys are abbreviated and non-abbreviated attack names. The values contain metadata specific to the attack. Most attack frame state names (```startup```,```active```,etc...) are spelled out, but certain values may be abbreviated. Below is a key for abbreviated values
 
 | Abbreviation | Value    |
 | ------------ | -------- |

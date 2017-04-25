@@ -17,7 +17,9 @@
   },
   "description": "A proof of concept http web service providing frame data for Ultra Street Fighter 4 and Street Fighter V. My data is brought to you by the great [ToolAssisted](https://github.com/toolassisted)",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "tap": "^10.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jpgnotgif/frda.js.git"

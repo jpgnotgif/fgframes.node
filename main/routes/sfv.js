@@ -45,20 +45,8 @@ router.get('/s:version/:name', function(req, res, next) {
     .then((character) => {
       character.frames()
         .then((data) => {
-
           if (character.normalsOnly) {
-            const frameData = JSON.parse(data);
-            const filteredData = {
-              metadata: frameData.metadata,
-              attacks: {}
-            };
-
-            const normals = _.each(frameData.attacks, (obj, name) => {
-              if (obj.normal)
-                filteredData.attacks[name] = obj;
-            });
-
-            res.send(filteredData);
+            res.send(character.normalsWithMetadata(data));
           } else {
             res.send(data);
           }

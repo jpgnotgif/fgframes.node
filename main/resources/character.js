@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const _ = require('lodash');
 const fs = require('fs');
 const config = require('../../config/defaults');
 const dataPath = config.dataPaths;
@@ -47,21 +48,17 @@ class Character {
     return p;
   }
 
-  normals() {
-    this.frames()
-      .then((data) => {
-        const frameData = JSON.parse(data);
-        const filteredData = {
-          metadata: frameData.metadata,
-          attacks: {}
-        };
-        const normals = _.each(frameData.attacks, (obj, name) => {
-          if (obj.normal)
-            filteredData.attacks[name] = obj;
-        });
-        return normals;
-      })
-      .done();
+  normalsWithMetadata(data) {
+    const frameData = JSON.parse(data);
+    const filteredData = {
+      metadata: frameData.metadata,
+      attacks: {}
+    };
+    const normals = _.each(frameData.attacks, (obj, name) => {
+      if (obj.normal)
+        filteredData.attacks[name] = obj;
+    });
+    return filteredData;
   }
 }
 

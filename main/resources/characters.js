@@ -1,10 +1,10 @@
 'use strict';
 
-const path = require('path');
-const fs = require('fs');
-const _ = require('lodash');
+const path     = require('path');
+const fs       = require('fs');
+const _        = require('lodash');
+const config   = require('../../config/defaults');
 
-const config = require('../../config/defaults');
 const dataPath = config.dataPaths;
 
 class Characters {
@@ -20,7 +20,7 @@ class Characters {
   }
 
   basename(name) {
-    return path.basename(name, '.json');
+    return _.upperFirst(path.basename(name, '.json'));
   }
 
   list() {

@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const _       = require('lodash');
 
 const router = express.Router();
 const game = 'sfv';
@@ -25,7 +26,15 @@ router.get('/s:version/characters', (req, res, next) => {
 });
 
 router.get('/s:version/:name', function(req, res, next) {
-  const character = new Character(req.params.name, game, req.params.version);
+  const attrs = {
+    game,
+    normalsOnly: req.query.normals || false,
+    name: req.params.name,
+    version: req.params.version
+  };
+
+  const character = new Character(attrs);
+
   if (!(character.validVersion())) {
     res.status(400).json({
       game, message: 'Version must either be "1" or "2"'
@@ -36,7 +45,23 @@ router.get('/s:version/:name', function(req, res, next) {
     .then((character) => {
       character.frames()
         .then((data) => {
-          res.send(data);
+
+          if (character.normalsOnly) {
+            const frameData = JSON.parse(data);
+            const filteredData = {
+              metadata: frameData.metadata,
+              attacks: {}
+            };
+
+            const normals = _.each(frameData.attacks, (obj, name) => {
+              if (obj.normal)
+                filteredData.attacks[name] = obj;
+            });
+
+            res.send(filteredData);
+          } else {
+            res.send(data);
+          }
         })
         .catch((err) => {
           res.status(404).json({

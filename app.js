@@ -12,7 +12,11 @@ const sfv = require('./main/routes/sfv');
 const app = express();
 
 // Config
-console.log('༼ง=ಠ益ಠ=༽ง');
+console.log('----------------');
+console.log('                ');
+console.log('   ༼ง=ಠ益ಠ=༽ง   ');
+console.log('                ');
+console.log('----------------');
 app.set('usf4-data-path', 'data/title/usf4/json');
 app.set('sfv-data-path', 'data/title/sfv/json');
 

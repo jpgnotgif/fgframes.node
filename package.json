@@ -7,7 +7,7 @@
     "debug-start": "node inspect bin/www"
   },
   "engines": {
-    "node": "7.7.2"
+    "node": "7.10.1"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

@@ -12,6 +12,12 @@ const Characters = require('../resources/characters');
 router.get('/s:version/characters', (req, res, next) => {
   const characters = new Characters(game, req.params.version);
 
+  if (!(characters.version.valid())) {
+    res.status(400).json({
+      game, message: characters.version.errorMessage
+    });
+  }
+
   characters.list()
     .then((names) => {
       res.status(200).json({
@@ -35,9 +41,9 @@ router.get('/s:version/:name', function(req, res, next) {
 
   const character = new Character(attrs);
 
-  if (!(character.validVersion())) {
+  if (!(character.version.valid())) {
     res.status(400).json({
-      game, message: 'Version must either be "1" or "2"'
+      game, message: character.version.errorMessage
     });
   }
 

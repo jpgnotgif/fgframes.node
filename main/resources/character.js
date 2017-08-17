@@ -5,19 +5,15 @@ const _ = require('lodash');
 const fs = require('fs');
 const config = require('../../config/defaults');
 const dataPath = config.dataPaths;
+const Version = require('./version');
 
 class Character {
   constructor(attrs) {
     this.name = attrs.name;
     this.game = attrs.game;
-    this.version = attrs.version;
+    this.version = new Version(attrs.version);
     this.normalsOnly = attrs.normalsOnly;
-    this.path = path.join(__dirname, '../../', dataPath[this.game], `s${this.version}`, `${this.name}.json`);
-  }
-
-  validVersion() {
-    return this.version == 1 ||
-      this.version == 2;
+    this.path = path.join(__dirname, '../../', dataPath[this.game], `s${this.version.number}`, `${this.name}.json`);
   }
 
   exists() {

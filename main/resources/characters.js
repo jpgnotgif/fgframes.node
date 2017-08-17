@@ -6,11 +6,12 @@ const _        = require('lodash');
 const config   = require('../../config/defaults');
 
 const dataPath = config.dataPaths;
+const Version = require('./version');
 
 class Characters {
   constructor(game, version) {
     this.game = game;
-    this.version = version;
+    this.version = new Version(version);
     this.path = path.join(
       __dirname,
       '../../',
